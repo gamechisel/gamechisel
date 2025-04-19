@@ -72,3 +72,40 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+# _____________________________________________________ Custom Unity
+
+# Ignore everything inside Assets/__Extensions
+Assets/__Extensions/*
+
+# But NOT the folder itself
+!Assets/__Extensions/.gitkeep
+
+# Ignore everything inside Scenes stable
+Assets/__Stable/*
+
+# But NOT the folder itself
+!Assets/__Stable/.gitkeep
+
+# Ignore everything inside Assets/__Extensions
+Assets/__Dev/*
+
+# But NOT the folder itself
+!Assets/__Dev/.gitkeep
+
+# Ignore library folder due to size
+Assets/Library/*
+
+# But NOT the folder itself
+!Assets/Library/.gitkeep
+
+# Ignore library folder due to size
+Assets/Resources/audio/*
+Assets/Resources/cutscene/*
+Assets/Resources/game/*
+
+# But NOT the folder itself
+Assets/Resources/audio/.gitkeep
+Assets/Resources/cutscene/.gitkeep
+Assets/Resources/game/.gitkeep
