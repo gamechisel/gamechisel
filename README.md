@@ -56,6 +56,8 @@
   <li><strong>TextMesh Pro</strong> – Enhanced text rendering for UI/UX</li>
   <li><strong>Polybrush</strong> – In-editor mesh sculpting and texture blending</li>
   <li><strong>ProBuilder</strong> – Mesh modeling and level design inside Unity</li>
+  <li><strong>Multiplayer Tools</strong> – Multiplayer tools inside Unity</li>
+  <li><strong>Multiplayer Play Mode</strong> – Multiplayer Play Mode inside Unity</li>
 </ul>
 
 <hr style="margin: 2rem 0;" />
