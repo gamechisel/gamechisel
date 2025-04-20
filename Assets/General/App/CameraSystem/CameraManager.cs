@@ -51,4 +51,12 @@ public class CameraManager : MonoBehaviour
         Vector3 cameraRotation = new Vector3(cameraTransform.eulerAngles.x, cameraTransform.eulerAngles.y, cameraTransform.eulerAngles.z);
         return cameraRotation;
     }
+
+    /// <summary>
+    /// Returns the camera's forward (looking) direction.
+    /// </summary>
+    public Vector3 GetCameraForward()
+    {
+        return cameraTransform.forward;
+    }
 }

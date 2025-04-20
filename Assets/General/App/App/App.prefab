@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applyCurrent: 0
-  asset: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
+  asset: {fileID: 11400000, guid: 4c21f67269f34a728a5c06e1d4931de8, type: 2}
   lowVegetationDistance: 35
   windEffects: 1
   windForce: 0.25

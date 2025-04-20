@@ -296,15 +296,6 @@ public class NetworkController : NetworkBehaviour
         return clientIdList;
     }
 
-    [ClientRpc(RequireOwnership = false)]
-    public void SetNewSceneClientRpc(string _newScene)
-    {
-        // Stop music and clear UI
-        SceneLoader.Instance.sceneName = _newScene;
-        AudioManager.Instance.StopMusic();
-        UIManager.Instance.ClearAllMenus();
-    }
-
     public void LoadMultiplayerScene(string id)
     {
         StartCoroutine(LoadNetworkSceneAsync(id));
@@ -334,11 +325,12 @@ public class NetworkController : NetworkBehaviour
         // switchingScene = false;
     }
     
-    [ClientRpc]
-    private void SceneSwitchClientRpc(string _sceneName)
+    [ClientRpc(RequireOwnership = false)]
+    public void SceneSwitchClientRpc(string _sceneName)
     {
        SceneLoader.Instance.SetSceneName(_sceneName);
+       SceneLoader.Instance.EndSceneTransitionAnimation();
+       AudioManager.Instance.StopMusic();
        UIManager.Instance.ClearAllMenus();
-
     }
 }

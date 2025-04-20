@@ -45,22 +45,7 @@ public class SceneLoader : MonoBehaviour
             {
                 sceneName = id;
                 switchingScene = true;
-
-                // Check if we are in a networked context
-                // if (NetworkManager.Singleton.IsHost || NetworkManager.Singleton.IsClient)
-                // {
-                //     // Use Netcode's scene loading for networked environments
-                //     StartCoroutine(LoadNetworkSceneAsync(id));
-                //     NetworkController.Instance.SetNewSceneClientRpc(sceneName);
-                // }
-                // else
-                // {
-                // Use local scene loading for single-player
                 StartCoroutine(LoadLocalSceneAsync(id));
-                // }
-                // 
-                Debug.Log("Scene loaded: " + id);
-                switchingScene = false;
             }
         }
         else
@@ -77,8 +62,8 @@ public class SceneLoader : MonoBehaviour
     // Local Scene Loading
     private IEnumerator LoadLocalSceneAsync(string id)
     {
-        // animator.SetTrigger("close");
-        // yield return new WaitForSeconds(animationTime); // Wait for animation to finish
+         StartSceneTransitionAnimation();
+         yield return new WaitForSeconds(animationTime);
 
         // Load scene locally
         AsyncOperation op = SceneManager.LoadSceneAsync(id);
@@ -88,8 +73,26 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
 
-        animator.SetTrigger("open");
+        EndSceneTransitionAnimation();
         yield return new WaitForSeconds(animationTime);
+
         switchingScene = false;
+    }
+
+    public void StartSceneTransitionAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("close");
+        }
+    }
+
+    // End of transition (e.g., fade in)
+    public void EndSceneTransitionAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("open");
+        }
     }
 }
