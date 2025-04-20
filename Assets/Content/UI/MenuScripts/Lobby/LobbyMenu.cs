@@ -144,25 +144,10 @@ public class LobbyMenu : MonoBehaviour
             App.Instance.QuitApplication();
         }
     }
-
-    public void OpenYouTube()
-    {
-        ExternalLinks.OpenYoutube();
-    }
-
-    public void OpenDiscord()
-    {
-        ExternalLinks.OpenDiscord();
-    }
-
+    
     public void OpenWebsite()
     {
         ExternalLinks.OpenWebsite();
-    }
-
-    public void OpenItch()
-    {
-        ExternalLinks.OpenItch();
     }
 
     private void BackButton()

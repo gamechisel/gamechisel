@@ -5,8 +5,8 @@ public static class DrawRays
     public static bool enableRays = true;
 
     public static Color colliderColor = Color.green;
+    public static Color hitboxColor = Color.green;
     public static Color physicsColor = Color.blue;
-    public static Color hitboxColor = Color.magenta;
     public static Color inputColor = Color.red;
     public static Color scanColor = Color.yellow;
 

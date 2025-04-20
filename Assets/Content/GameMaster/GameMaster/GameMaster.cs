@@ -9,6 +9,9 @@ public class GameMaster : MonoBehaviour
     public TimelineManager timelineManager;
     public GameData gameData;
 
+    [Header("Temporary")]
+    public bool startGame = false;
+
     [Header("State")]
     public bool isRunning;
     public bool isCutscene;
@@ -132,9 +135,11 @@ public class GameMaster : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if(startGame || Input.GetKeyDown(KeyCode.P))
         {
+            startGame = false;
             StartGame();
+            Debug.Log("Start Game");
         }
     }
 

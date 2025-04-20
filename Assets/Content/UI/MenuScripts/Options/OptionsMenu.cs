@@ -104,6 +104,7 @@ public class OptionsMenu : MonoBehaviour
 
             // Now that the server or client has been shut down, load the "LobbyScene"
             SceneLoader.Instance.LoadScene("LobbyScene");
+            Close();
         }
         else
         {

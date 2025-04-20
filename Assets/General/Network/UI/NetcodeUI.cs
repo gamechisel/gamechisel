@@ -42,6 +42,7 @@ public class NetcodeUI : MonoBehaviour
             ushort port = GetPort();
             if (NetworkConnection.Instance.StartHost(port))
             {
+                Debug.Log("Joined as host");
             }
         });
 
@@ -53,6 +54,7 @@ public class NetcodeUI : MonoBehaviour
 
             if (NetworkConnection.Instance.StartClient(ipAddress, port, "secret123"))
             {
+                Debug.Log("Joined as client");
             }
         });
 

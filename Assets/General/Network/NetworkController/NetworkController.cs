@@ -316,6 +316,12 @@ public class NetworkController : NetworkBehaviour
         // Trigger Netcode's networked scene loading
         NetworkManager.Singleton.SceneManager.LoadScene(id, LoadSceneMode.Single);
 
+        // Run scene switch for clients
+        if (IsServer)
+        {
+            SceneSwitchClientRpc(id);
+        }
+
         // Wait for networked scene loading to complete (optional check)
         while (NetworkManager.Singleton.IsServer)
         {
@@ -326,5 +332,13 @@ public class NetworkController : NetworkBehaviour
         // animator.SetTrigger("open");
         // yield return new WaitForSeconds(animationTime);
         // switchingScene = false;
+    }
+    
+    [ClientRpc]
+    private void SceneSwitchClientRpc(string _sceneName)
+    {
+       SceneLoader.Instance.SetSceneName(_sceneName);
+       UIManager.Instance.ClearAllMenus();
+
     }
 }

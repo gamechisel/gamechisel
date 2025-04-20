@@ -66,6 +66,8 @@ public class NetworkConnection : MonoBehaviour
             return true;
         }
 
+        StartErrorHandling();
+
         return false;
     }
 
@@ -93,6 +95,7 @@ public class NetworkConnection : MonoBehaviour
         connectionIP = "";
         usePort = 7777;
         isHost = false;
+        StopErrorHandling();
         return true;
     }
 
@@ -141,6 +144,8 @@ public class NetworkConnection : MonoBehaviour
             return true;
         }
 
+        StartErrorHandling();
+
         return false;
     }
 
@@ -156,6 +161,7 @@ public class NetworkConnection : MonoBehaviour
             usePort = 7777;
             isClient = false;
             return true;
+            StopErrorHandling();
         }
         return false;
     }
@@ -212,5 +218,70 @@ public class NetworkConnection : MonoBehaviour
 
         return false;
     }
+
+    private void StartErrorHandling()
+    {
+        if (NetworkManager.Singleton == null) return;
+        NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnected;
+        // NetworkManager.Singleton.OnTransportFailure += HandleTransportFailure;
+        // NetworkManager.Singleton.OnServerStopped += HandleServerStopped;
+    }
+
+    private void HandleClientDisconnected(ulong clientId)
+    {
+        // Wenn WIR der Client sind
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+        {
+            Debug.LogWarning("Verbindung zum Server verloren!");
+            isClient = false;
+            connectionIP = "";
+            HandleDisconnectError();
+        }
+        else
+        {
+            Debug.Log($"Client {clientId} wurde getrennt (wir sind nicht gemeint).");
+        }
+    }
+
+    private void HandleTransportFailure()
+    {
+        Debug.LogError("Netzwerktransport ist fehlgeschlagen!");
+        if (NetworkManager.Singleton.IsClient)
+        {
+            isClient = false;
+        }
+        else if (NetworkManager.Singleton.IsHost)
+        {
+            isHost = false;
+            allowClientJoining = false;
+        }
+
+        connectionIP = "";
+        // Hier ebenfalls: Rücksprung oder Error-UI
+    }
+
+    private void HandleServerStopped(bool wasHost)
+    {
+        Debug.LogWarning("Server wurde gestoppt!");
+        isHost = false;
+        allowClientJoining = false;
+        connectionIP = "";
+    }
+
+    private void HandleDisconnectError()
+    {
+        UIManager.Instance.ClearAllMenus();
+        SceneLoader.Instance.LoadScene("LobbyScene");
+        // Hier kannst du z. B. ein UI öffnen oder ins Hauptmenü zurückspringen
+    }
+
+    private void StopErrorHandling()
+    {
+        if (NetworkManager.Singleton == null) return;
+        NetworkManager.Singleton.OnClientDisconnectCallback -= HandleClientDisconnected;
+        // NetworkManager.Singleton.OnTransportFailure -= HandleTransportFailure;
+        // NetworkManager.Singleton.OnServerStopped -= HandleServerStopped;
+    }
+
 }
 

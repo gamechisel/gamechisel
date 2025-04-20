@@ -69,25 +69,10 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    // Networked Scene Loading
-    // private IEnumerator LoadNetworkSceneAsync(string id)
-    // {
-    //     // animator.SetTrigger("close");
-    //     // yield return new WaitForSeconds(animationTime); // Wait for animation to finish
-
-    //     // Trigger Netcode's networked scene loading
-    //     NetworkManager.Singleton.SceneManager.LoadScene(id, LoadSceneMode.Single);
-
-    //     // Wait for networked scene loading to complete (optional check)
-    //     while (NetworkManager.Singleton.IsServer)
-    //     {
-    //         yield return null; // Wait for the scene to fully load
-    //     }
-
-    //     animator.SetTrigger("open");
-    //     yield return new WaitForSeconds(animationTime);
-    //     switchingScene = false;
-    // }
+    public void SetSceneName(string _sceneName)
+    {
+        sceneName = _sceneName;
+    }
 
     // Local Scene Loading
     private IEnumerator LoadLocalSceneAsync(string id)
