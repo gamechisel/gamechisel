@@ -76,11 +76,11 @@ crashlytics-build.properties
 
 # _____________________________________________________ Custom Unity
 
-# Ignore everything inside Assets/__Extensions
-Assets/__Extensions/*
+# Ignore everything inside Assets/Extensions/__commercial/*
+Assets/Extensions/__commercial/*
 
 # But NOT the folder itself
-!Assets/__Extensions/.gitkeep
+!Assets/Extensions/__commercial/.gitkeep
 
 # Ignore everything inside Scenes stable
 Assets/__Stable/*

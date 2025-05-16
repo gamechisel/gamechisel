@@ -67,13 +67,6 @@ public class App : MonoBehaviour
         AudioManager.Instance.StopMusic();
         UIManager.Instance.ClearAllMenus();
         Debug.Log("Quit Application");
-        if (Application.isEditor)
-        {
-            SceneLoader.Instance.LoadScene("LobbyScene");
-        }
-        else
-        {
-            Application.Quit();
-        }
+        Application.Quit();
     }
 }

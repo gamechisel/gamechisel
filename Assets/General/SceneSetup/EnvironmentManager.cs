@@ -39,6 +39,7 @@ public class EnvironmentManager : MonoBehaviour
     [Range(0f, 1f)] public float windForce;
     [Range(0f, 1f)] public float rainForce;
     [Range(0f, 1f)] public float fogDensity;
+    private float minFogDensity = 0.00005f;
 
     [Header("Rain")]
     [SerializeField] private ParticleSystem rainParticles;
@@ -72,7 +73,7 @@ public class EnvironmentManager : MonoBehaviour
         // Set Render Settings
         RenderSettings.fog = true;
         RenderSettings.fogMode = FogMode.ExponentialSquared;
-        RenderSettings.fogDensity = 0.0045f;
+        RenderSettings.fogDensity = minFogDensity;
         RenderSettings.reflectionIntensity = 0.3f;
     }
 
@@ -183,7 +184,7 @@ public class EnvironmentManager : MonoBehaviour
     {
         Color horizonColor = Color.Lerp(fogColor.Evaluate(dayScale), stormColor, rainForce / 1.5f);
         RenderSettings.fogColor = horizonColor;
-        RenderSettings.fogDensity = fogDensity * fogDensity * 0.05f + 0.005f;
+        RenderSettings.fogDensity = fogDensity * fogDensity * 0.05f + minFogDensity;
     }
 
     private void HandleEnvironmentLight()
